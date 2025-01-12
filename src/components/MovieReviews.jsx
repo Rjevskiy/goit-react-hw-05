@@ -23,7 +23,7 @@ const MovieReviews = () => {
 
   return (
     <div className="reviews-section">
-      <h2>Reviews</h2>
+     
       {reviews.length ? (
         <ul>
           {reviews.map((review) => (

@@ -248,6 +248,8 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  margin-top: 20px;
+
 }
 
 /* Стили для карточки актера */

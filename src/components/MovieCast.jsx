@@ -25,7 +25,7 @@ const MovieCast = () => {
 
   return (
     <div className="cast-section">
-      <h2>Cast</h2>
+      
       {cast.length ? (
         <div className="cast-list">
           {cast.map((actor) => (
