@@ -1,10 +1,10 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Loader from './pages/Loader';
+import Loader from './components/Loader';
 
-const HomePage = React.lazy(() => import('./pages/HomePage'));
-const MoviesPage = React.lazy(() => import('./pages/MoviesPage'));
-const MovieDetailsPage = React.lazy(() => import('./pages/MovieDetailsPage'));
+const HomePage = React.lazy(() => import('./components/HomePage'));
+const MoviesPage = React.lazy(() => import('./components/MoviesPage'));
+const MovieDetailsPage = React.lazy(() => import('./components/MovieDetailsPage'));
 
 const App = () => {
   return (
