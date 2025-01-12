@@ -33,7 +33,7 @@ const HomePage = () => {
       <ul className='HomePage'>
         {movies.map((movie) => (
           <li key={movie.id}>
-            <Link to={`/movie/${movie.id}`}>
+            <Link to={`/movies/${movie.id}`}>
               <h3>{movie.title}</h3>
             </Link>
           </li>
