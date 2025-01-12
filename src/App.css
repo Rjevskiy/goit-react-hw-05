@@ -180,7 +180,7 @@ main {
 .details-container{
   display: flex;
   flex-direction: row;
-  padding-top: 100px;}
+  padding-top: 80px;}
 
 .movie-details{
   display: flex;
