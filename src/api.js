@@ -1,29 +1,61 @@
+// src/api.js
 import axios from 'axios';
 
-const API_KEY = 'af069d5a4aa6dab18750675f951f88b6'; 
-const BASE_URL = 'https://api.themoviedb.org/3';
+// Токен для авторизации
+const API_TOKEN = 'af069d5a4aa6dab18750675f951f88b6';
+const API_URL = 'https://api.themoviedb.org/3/';
 
-const api = axios.create({
-  baseURL: BASE_URL,
-  params: {
-    api_key: API_KEY,
-    language: 'en-US',
-  },
-});
-
-export const getTrendingMovies = async () => {
-  const response = await api.get('/trending/movie/day');
-  return response.data.results;
-};
-
+// Функция для получения фильмов по поисковому запросу
 export const searchMovies = async (query) => {
-  const response = await api.get('/search/movie', {
-    params: { query },
-  });
-  return response.data.results;
+  try {
+    const response = await axios.get(`${API_URL}search/movie`, {
+      params: {
+        query: query,
+        include_adult: false,
+        language: 'en-US',
+        page: 1,
+      },
+      headers: {
+        Authorization: `Bearer ${API_TOKEN}`,
+      },
+    });
+
+    return response.data.results; // Возвращаем список фильмов
+  } catch (error) {
+    console.error('Error fetching movies:', error);
+    return [];
+  }
 };
 
-export const getMovieDetails = async (id) => {
-  const response = await api.get(`/movie/${id}`);
-  return response.data;
+// Функция для получения трендовых фильмов
+export const getTrendingMovies = async () => {
+  try {
+    const response = await axios.get(`${API_URL}trending/movie/day`, {
+      headers: {
+        Authorization: `Bearer ${API_TOKEN}`,
+      },
+    });
+
+    return response.data.results; // Возвращаем список трендовых фильмов
+  } catch (error) {
+    console.error('Error fetching trending movies:', error);
+    return [];
+  }
 };
+	
+// Функция для получения подробной информации о фильме
+export const getMovieDetails = async (movieId) => {
+  try {
+    const response = await axios.get(`${API_URL}movie/${movieId}`, {
+      headers: {
+        Authorization: `Bearer ${API_TOKEN}`,
+      },
+    });
+
+    return response.data; 
+  } catch (error) {
+    console.error('Error fetching movie details:', error);
+    return null;
+  }
+};
+
