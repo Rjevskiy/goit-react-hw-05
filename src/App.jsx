@@ -21,7 +21,6 @@ const App = () => {
       </header>
 
       <main>
-        {/* Оборачиваем маршруты в Suspense */}
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<HomePage />} />

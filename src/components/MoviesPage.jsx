@@ -20,8 +20,6 @@ const MoviesPage = () => {
   return (
     <div>
       <h1>Search Movies</h1>
-
-      {/* Форма для поиска */}
       <input
         type="text"
         placeholder="Search for a movie"
@@ -29,13 +27,11 @@ const MoviesPage = () => {
         onChange={(e) => setSearchQuery(e.target.value)}
       />
       <button onClick={handleSearch}>Search</button>
-
-      {/* Список найденных фильмов */}
       <ul>
         {movies.map((movie) => (
           <li key={movie.id}>
             <Link to={`/movie/${movie.id}`}>
-              <h3>{movie.title}</h3> {/* При клике на название фильма, перейдем на страницу с его деталями */}
+              <h3>{movie.title}</h3> 
             </Link>
           </li>
         ))}

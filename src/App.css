@@ -2,10 +2,7 @@
 /* Общие стили */
 #root {
   max-width: 1280px;
-  color: #333;
-}
-
-
+  color: #333;}
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -79,43 +76,38 @@ body {
     transform: rotate(360deg);
   }
 }
-
-
-
+main {
+  padding: 60px;
+}
 
 
 
 
 /* Стили для header */
 .header {
-  position: fixed; /* Закрепляем элементы */
-  top: 0;          /* Прикрепляем к верхней части */
+  position: fixed; 
+  top: 0;          
   left: 0;
   right: 0;
-  background-color: gray; /* Цвет фона */
-  padding: 10px ;     /* Отступы вокруг кнопок */
+  background-color: gray; 
+  padding: 10px ;    
   color: #333;
 }
 
 /* Стили для кнопок */
 .nav-button {
-  background-color: #ffdddd;  /* Цвет фона кнопок */
-  color: #333;           /* Цвет текста */
+  background-color: #ffdddd;  
+  color: #333;           
   border: none;
   
   padding: 10px 20px;
   cursor: pointer;
   font-size: 16px;
-  border-radius: 5px;      /* Скругление углов */
+  border-radius: 5px;      
 }
 
 .nav-button:hover {
-  background-color: pink;  /* Цвет фона при наведении */
-}
-
-/* Добавим отступы для main, чтобы контент не перекрывался header */
-main {
-  padding: 60px;
+  background-color: pink;  
 }
 
 
