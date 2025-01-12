@@ -55,6 +55,32 @@ body {
   border-radius: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ccc;
+  border-top: 5px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
 
 
 
@@ -89,7 +115,7 @@ body {
 
 /* Добавим отступы для main, чтобы контент не перекрывался header */
 main {
-  padding: 20px;
+  padding: 60px;
 }
 
 
@@ -104,7 +130,7 @@ main {
 
   position: absolute;
   top: 60px;
-  left: 10px; 
+  left: 40px; 
   background-color: #ffdddd;
   color: #333;
   padding: 10px 20px;

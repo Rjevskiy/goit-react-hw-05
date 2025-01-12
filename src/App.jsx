@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import HomePage from './components/HomePage';
-import MoviesPage from './components/MoviesPage';
-import MovieDetailsPage from './components/MovieDetailsPage'; // Импортируем компонент MovieDetailsPage
+import Loader from './components/Loader';
+
+const HomePage = React.lazy(() => import('./components/HomePage'));
+const MoviesPage = React.lazy(() => import('./components/MoviesPage'));
+const MovieDetailsPage = React.lazy(() => import('./components/MovieDetailsPage'));
 
 const App = () => {
   return (
@@ -19,18 +21,20 @@ const App = () => {
       </header>
 
       <main>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/movies" element={<MoviesPage />} />
-          <Route path="/movie/:id" element={<MovieDetailsPage />} /> {/* Добавили маршрут для страницы с фильмом */}
-        </Routes>
+        {/* Оборачиваем маршруты в Suspense */}
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/movies" element={<MoviesPage />} />
+            <Route path="/movie/:id" element={<MovieDetailsPage />} />
+          </Routes>
+        </Suspense>
       </main>
     </Router>
   );
 };
 
 export default App;
-
 
 
 
