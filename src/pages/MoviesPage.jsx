@@ -9,10 +9,8 @@ const MoviesPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // получаем параметр 
-  const searchQuery = query.get('query') || '';
 
-  
+  const searchQuery = query.get('query') || '';
   useEffect(() => {
     const fetchMovies = async () => {
       if (!searchQuery) return;  // Если нет запроса
