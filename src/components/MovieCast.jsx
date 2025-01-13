@@ -12,8 +12,8 @@ const MovieCast = () => {
 
       try {
         const response = await axios.get(url);
-        // Ограничиваем список актеров (первые 5-7 актеров)
-        const limitedCast = response.data.cast.slice(0, 7); 
+        
+        const limitedCast = response.data.cast.slice(0, 9); 
         setCast(limitedCast);
       } catch (error) {
         console.error('Error fetching cast:', error);

@@ -1,20 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import MovieList from '../components/MovieList'; 
 
 const MoviesPage = () => {
-  const [searchQuery, setSearchQuery] = useState('');
   const [movies, setMovies] = useState([]);
+  const [query, setQuery] = useSearchParams();  
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleSearch = async () => {
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=af069d5a4aa6dab18750675f951f88b6&query=${searchQuery}&language=en-US`;
+  // получаем параметр 
+  const searchQuery = query.get('query') || '';
 
-    try {
-      const response = await axios.get(url);
-      setMovies(response.data.results);
-    } catch (error) {
-      console.error('Error searching for movies:', error);
-    }
+  
+  useEffect(() => {
+    const fetchMovies = async () => {
+      if (!searchQuery) return;  // Если нет запроса
+
+      setLoading(true);
+      setError(null);  // очищаем поршлые ошибки
+
+      const url = `https://api.themoviedb.org/3/search/movie?api_key=af069d5a4aa6dab18750675f951f88b6&query=${searchQuery}&language=en-US`;
+
+      try {
+        const response = await axios.get(url);
+        setMovies(response.data.results);
+      } catch (err) {
+        setError('Failed to fetch movies');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMovies();
+  }, [searchQuery]);  // Повторно запускаем если query меняется
+
+  // обработчик поискф
+  const handleSearch = (event) => {
+    setQuery({ query: event.target.value });
   };
 
   return (
@@ -22,23 +45,17 @@ const MoviesPage = () => {
       <h1>Search Movies</h1>
       <input
         type="text"
-        placeholder="Search for a movie"
+        placeholder="Search for a movie..."
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={handleSearch}
       />
-      <button onClick={handleSearch}>Search</button>
-      <ul>
-        {movies.map((movie) => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>
-              <h3>{movie.title}</h3> 
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      <MovieList movies={movies} />
     </div>
   );
 };
 
 export default MoviesPage;
+
 

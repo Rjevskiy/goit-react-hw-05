@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-// Импорты компонентов
+
 import MovieCast from '../components/MovieCast';
 import MovieReviews from '../components/MovieReviews';
 
@@ -32,7 +32,7 @@ const MovieDetailsPage = () => {
 
   const imageUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
   const handleGoBack = () => {
-    // Если navigate(-1) не работает, можно задать явный путь для возврата
+    
     navigate(-1);
   };
   
