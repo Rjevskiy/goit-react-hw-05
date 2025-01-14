@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link, useNavigate, Route, Routes } from 'react-router-dom';
+import React, { useEffect, useState, useRef } from 'react';
+import { useParams, Link, useNavigate, Route, Routes, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 import MovieCast from '../components/MovieCast';
@@ -9,6 +9,8 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const prevLocationRef = useRef(location.state || '/'); // Сохраняем предыдущее состояние или "/"
 
   // Получение данных о фильме
   useEffect(() => {
@@ -31,7 +33,7 @@ const MovieDetailsPage = () => {
   const imageUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
   const handleGoBack = () => {
-    navigate(-1);
+    navigate(prevLocationRef.current || '/'); // Переходим обратно на сохранённый путь
   };
 
   return (
@@ -50,14 +52,13 @@ const MovieDetailsPage = () => {
 
       {/* Ссылки для перехода на подстраницы */}
       <div className="button-container">
-  <button>
-    <Link to={`/movies/${movieId}/cast`}>Cast</Link>
-  </button>
-  <button>
-    <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
-  </button>
-</div>
-
+        <button>
+          <Link to="cast">Cast</Link>
+        </button>
+        <button>
+          <Link to="reviews">Reviews</Link>
+        </button>
+      </div>
 
       {/* Вложенные маршруты для cast и reviews */}
       <Routes>
