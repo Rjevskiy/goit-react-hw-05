@@ -10,7 +10,7 @@ const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const prevLocationRef = useRef(location.state || '/'); // Сохраняем предыдущее состояние или "/"
+  const prevLocationRef = useRef(location.state || '/'); // Сохраняем предыдущее состояние 
 
   // Получение данных о фильме
   useEffect(() => {
@@ -33,7 +33,7 @@ const MovieDetailsPage = () => {
   const imageUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
   const handleGoBack = () => {
-    navigate(prevLocationRef.current || '/'); // Переходим обратно на сохранённый путь
+    navigate(prevLocationRef.current || '/'); // Переходим обратно 
   };
 
   return (
@@ -50,17 +50,17 @@ const MovieDetailsPage = () => {
         </div>
       </div>
 
-      {/* Ссылки для перехода на подстраницы */}
+      {/* Ссылки с абсолютными путями */}
       <div className="button-container">
         <button>
-          <Link to="cast">Cast</Link>
+          <Link to={`/movies/${movieId}/cast`}>Cast</Link>
         </button>
         <button>
-          <Link to="reviews">Reviews</Link>
+          <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
         </button>
       </div>
 
-      {/* Вложенные маршруты для cast и reviews */}
+      {/* Вложенные маршруты */}
       <Routes>
         <Route path="cast" element={<MovieCast />} />
         <Route path="reviews" element={<MovieReviews />} />
@@ -70,6 +70,7 @@ const MovieDetailsPage = () => {
 };
 
 export default MovieDetailsPage;
+
 
 
 

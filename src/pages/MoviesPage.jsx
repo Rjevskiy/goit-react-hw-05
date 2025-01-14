@@ -31,8 +31,7 @@ const MoviesPage = () => {
     };
 
     fetchMovies();
-  }, [searchQuery]);  // Повторно запускаем если query меняется
-
+  }, [searchQuery]);  
   // обработчик поискф
   const handleSearch = (event) => {
     setQuery({ query: event.target.value });
