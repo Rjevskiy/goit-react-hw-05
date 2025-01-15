@@ -32,7 +32,7 @@ const MoviesPage = () => {
 
     fetchMovies();
   }, [searchQuery]);  
-  // обработчик поискф
+  // обработчик поиска
   const handleSearch = (event) => {
     setQuery({ query: event.target.value });
   };

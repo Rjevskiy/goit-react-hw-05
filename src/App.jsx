@@ -19,19 +19,19 @@ const App = () => {
       <main>
         <Suspense fallback={<Loader />}>
           <Routes>
-            {/* Главная страница */}
+            
             <Route path="/" element={<HomePage />} />
 
-            {/* Страница поиска фильмов */}
+           
             <Route path="/movies" element={<MoviesPage />} />
 
-            {/* Детали фильма и вложенные маршруты */}
+            
             <Route path="/movies/:movieId/*" element={<MovieDetailsPage />}>
               <Route path="cast" element={<MovieCast />} />
               <Route path="reviews" element={<MovieReviews />} />
             </Route>
 
-            {/* Страница "Not Found" */}
+           
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
